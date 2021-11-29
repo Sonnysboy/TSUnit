@@ -7,7 +7,6 @@ export class Tests {
     if (typeof o1 !== 'boolean' && typeof o2 !== 'boolean' && !(o1 || o2)) // if (!o1 && !o2) de morgans law ,look it up !
       return false;
     
-    
     if (typeof o1 !== typeof o2) 
       return false;
     

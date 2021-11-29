@@ -38,7 +38,6 @@ class Class {
   // time to step up the pace.
   @Test([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34])
   @It("Will generate an array with elements 0,1,2,...,34 and then compare it with another array of the same elements. Should Pass.")
-  @It("Should also be big boy.")
   async complexArrayTest() {
 
     return (Array.from({ length: 35 }) as number[]).map((_, i) => i)

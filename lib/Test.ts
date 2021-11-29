@@ -33,7 +33,7 @@ export function Test<T>(expectedValue: T) {
     let method = descriptor.value!;
 
     // declare that this method is a test.
-
+    
     _tests.push({ fn: method, displayName: method.name, expectedValue: expectedValue });
 
     return descriptor;

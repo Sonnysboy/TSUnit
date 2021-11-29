@@ -1,12 +1,6 @@
 import * as fs from 'fs';
 import { TestFunction } from './Test';
-
-
-
 interface FileOutput {
-
-
-
   /**
    * Strict means fail if file DNE.
    */
@@ -17,8 +11,6 @@ interface FileOutput {
  * csv file output.
  */
 class CommaSeperatedValueOutput implements FileOutput {
-
-
   /**
    * Write the csv file.
    */
@@ -29,10 +21,8 @@ class CommaSeperatedValueOutput implements FileOutput {
     fs.writeFile(filePath, "Report Generated at " + new Date().toUTCString() + `\nTest Name, It?, Passed\n${tests.map(
       test => `${test.displayName}, ${test.it?.split("\n").join(" ") ?? "null"}, ${test.passed}`).join("\n")}`, err => {
         if (err) return false;
-
       })
   }
-
 }
 
 /**
