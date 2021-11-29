@@ -1,6 +1,5 @@
-import {DisplayName, Test, runAllTests} from './lib/Test';
-import  {Tests} from './lib/TestingLibraryMethods';
-
+import {It, DisplayName, Test, runAllTests} from './lib/Test';
+import axios from 'axios';
 
 
 class Class {
@@ -9,6 +8,7 @@ class Class {
   test() {
     let val = false;
     for (let i = 0; i <= 2000; i++) {
+
       if (val = (i ^ i ^ i ^ i ^ (i + 1)) === i) return true; 
     }
     return val; 
@@ -16,12 +16,18 @@ class Class {
   @Test(45)
   @DisplayName("Testing with a number.")
   testTwo() {
-
     return 23+22;
+  }
 
+
+  @Test(true)
+  @DisplayName("Running with an async function.")
+  @It("Should query the most optimized api ever, and then return true because 6 is even.")
+  async testThree() {
+
+    return await axios.get('https://api.isevenapi.xyz/api/iseven/6/').then(response => response.data.iseven);
 
   }
 }
-runAllTests();
-
-// new Class().test();
+// see testResults.csv
+runAllTests("testResults.csv", 'csv');
