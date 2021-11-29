@@ -52,7 +52,7 @@ export function DisplayName(testName: string) {
     descriptor: PropertyDescriptor) {
 
 // give this boyo a name...o
-    Object.assign(descriptor.value!, { testingDisplayName: `${testName}` });
+    Object.assign(descriptor.value!, { displayName: `${testName}` });
 
     return descriptor;
 

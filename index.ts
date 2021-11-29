@@ -28,6 +28,14 @@ class Class {
     return await axios.get('https://api.isevenapi.xyz/api/iseven/6/').then(response => response.data.iseven);
 
   }
+
+  @Test(35)
+  @DisplayName("35.")
+  @It("Should generate the number 35 with this very complex algorithm, and then return it.")
+  async testAgain() {
+    return 35;
+  }
+
 }
 // see testResults.csv
 runAllTests("testResults.csv", 'csv');

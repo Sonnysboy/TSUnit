@@ -1,5 +1,6 @@
-Report Generated at Mon, 29 Nov 2021 20:22:29 GMT
+Report Generated at Mon, 29 Nov 2021 20:26:35 GMT
 Test Name, It?, Passed
-test, null, true
-testTwo, null, true
-testThree, Should query the most optimized api ever, and then return true because 6 is even., true
+Testing Function Test, null, true
+Testing with a number., null, true
+Running with an async function., Should query the most optimized api ever, and then return true because 6 is even., true
+35., Should generate the number 35 with this very complex algorithm, and then return it., true
