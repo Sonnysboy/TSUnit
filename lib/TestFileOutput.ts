@@ -27,7 +27,7 @@ class CommaSeperatedValueOutput implements FileOutput {
       throw new Error(`File ${filePath} does not exist.`);
     }
     fs.writeFile(filePath, "Report Generated at " + new Date().toUTCString() + `\nTest Name, It?, Passed\n${tests.map(
-      test => `${test.displayName}, ${test.it ?? "null"}, ${test.passed}`).join("\n")}`, err => {
+      test => `${test.displayName}, ${test.it?.split("\n").join(" ") ?? "null"}, ${test.passed}`).join("\n")}`, err => {
         if (err) return false;
 
       })

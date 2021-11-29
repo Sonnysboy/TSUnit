@@ -4,7 +4,7 @@ export class Tests {
 
   public static assertEquals<T>(o1: T, o2: T) {
 
-    if (!(o1 || o2)) // if (!o1 && !o2)
+    if (typeof o1 !== 'boolean' && typeof o2 !== 'boolean' && !(o1 || o2)) // if (!o1 && !o2) de morgans law ,look it up !
       return false;
     
     
@@ -15,7 +15,7 @@ export class Tests {
     if (Array.isArray(o1) && Array.isArray(o2)) 
     {
       if (o1.length !== o2.length) return false;
-      if (o1.flat().length !== o2.flat().length) return false;  
+      return o1.every(entry => o2.includes(entry));
     }
     return o1 === o2;
   }

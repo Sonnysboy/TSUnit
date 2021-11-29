@@ -1,6 +1,7 @@
-Report Generated at Mon, 29 Nov 2021 20:26:35 GMT
+Report Generated at Mon, 29 Nov 2021 21:00:19 GMT
 Test Name, It?, Passed
 Testing Function Test, null, true
 Testing with a number., null, true
-Running with an async function., Should query the most optimized api ever, and then return true because 6 is even., true
-35., Should generate the number 35 with this very complex algorithm, and then return it., true
+Running with an async function, Should query the most optimized api ever, and then return true because 6 is even., true
+35, Should generate the number 35 with this very complex algorithm, and then return it., true
+complexArrayTest, Will generate an array with elements 0,1,2,...,34 and then compare it with another array of the same elements. Should Pass. Should also be big boy., true

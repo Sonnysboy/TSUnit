@@ -1,4 +1,5 @@
 import * as fo from './TestFileOutput';
+import {Tests} from './TestingLibraryMethods'
 export type TestFunction<T> = {
   fn: any;  // real fnuction 
   displayName: string;
@@ -11,7 +12,7 @@ export type TestFunction<T> = {
  * The output message for this testing function.
  */
 const _getOutputMessage = (test: TestFunction<any>) => {
-  return ` Test: "${test.displayName}" ${test.it ? "\n  - " + "it: " + test.it + "\nTest Result: " : ""} ${test.passed ?  "PASSED " + _PASSED_CHAR : "FAILED " + _FAILED_CHAR }`;
+  return `Test: "${test.displayName}" ${test.it ? test.it.split("\n").map(entry => "\n - " + "it: " + entry).join("") : ""}\n - Test Result: ${test.passed ?  "PASSED " + _PASSED_CHAR : "FAILED " + _FAILED_CHAR }`;
 }
 
 const _tests: TestFunction<any>[] = [];
@@ -68,6 +69,9 @@ export function It(description: string) {
     propertyKey: string,
     descriptor: PropertyDescriptor
   ) {
+    if (
+      descriptor.value![`it`]
+    ) description = description + "\n" + descriptor.value![`it`]
     Object.assign(descriptor.value!, { it : `${description}` });
     return descriptor;
   }
@@ -79,7 +83,7 @@ export function It(description: string) {
 export const runAllTests = async (outputFile?: string, outputType?: string) => {
   for (const test of _tests) { 
     
-    test.passed = (await test.fn.apply()) === test.expectedValue
+    test.passed = Tests.assertEquals(await test.fn.apply(), test.expectedValue)
     // check if the test passed in the first place.
     test.displayName = test.fn.displayName || test.fn.name;
     test.it = test.fn.it; // mutate the test objects for use in output.
