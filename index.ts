@@ -1,5 +1,6 @@
 import { It, DisplayName, Test, runAllTests } from './lib/Test';
 import axios from 'axios';
+import { ensureThat, the_function } from './lib/Tests';
 
 
 class Class {
@@ -8,7 +9,6 @@ class Class {
   test() {
     let val = false;
     for (let i = 0; i <= 2000; i++) {
-
       if (val = (i ^ i ^ i ^ i ^ (i + 1)) === i) return true;
     }
     return val;
@@ -24,7 +24,6 @@ class Class {
   @DisplayName("Running with an async function")
   @It("Should query the most optimized api ever, and then return true because 6 is even.")
   async testThree() {
-
     return await axios.get('https://api.isevenapi.xyz/api/iseven/6/').then(response => response.data.iseven);
 
   }
@@ -41,6 +40,11 @@ class Class {
   async complexArrayTest() {
 
     return (Array.from({ length: 35 }) as number[]).map((_, i) => i)
+  }
+  @Test(true)
+  @It("Should work, that is, this checking thing should work.")
+  testOfNewMethods() {
+    return ensureThat(the_function(() => 5 + 2)).evaluatesTo(7)
   }
 
 }

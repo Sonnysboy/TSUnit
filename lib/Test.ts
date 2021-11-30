@@ -1,5 +1,5 @@
 import * as fo from './TestFileOutput';
-import {Tests} from './TestingLibraryMethods'
+import {Tests} from './Tests'
 export type TestFunction<T> = {
   fn: any;  // real fnuction 
   displayName: string;
