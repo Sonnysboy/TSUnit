@@ -1,6 +1,8 @@
 import { It, DisplayName, Test, runAllTests } from './lib/Test';
 import axios from 'axios';
-import { ensureThat, the_function } from './lib/Tests';
+import { expect, the_function } from './lib/Tests';
+
+import {doTests} from './lib/Tests';
 
 
 class Class {
@@ -41,12 +43,8 @@ class Class {
 
     return (Array.from({ length: 35 }) as number[]).map((_, i) => i)
   }
-  @Test(true)
-  @It("Should work, that is, this checking thing should work.")
-  testOfNewMethods() {
-    return ensureThat(the_function(() => 5 + 2)).evaluatesTo(7)
-  }
 
 }
 // see testResults.csv
 runAllTests("testResults.csv", 'csv');
+new doTests();

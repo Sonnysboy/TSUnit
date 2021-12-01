@@ -16,32 +16,66 @@ type SomeFunction = {
 
 
 
-class FunctionChecker  {
-    eatenFunction: SomeFunction;
+export class Expectation  {
+    protected eatenFunction: SomeFunction;
+
+
+
+    public to: ExpectTo;
 
 
 
     constructor(fun: SomeFunction) {
 
         this.eatenFunction = fun;
+        this.to = new ExpectTo(this.eatenFunction);
 
     }
 
-    evaluatesTo(value: any) {
-        return this.eatenFunction.func.apply(null) === value;
-    }
-    // TODO continue.
-    evaluatesToWhen(value: any) {
+  
+}
 
-    }
+class ExpectTo {
 
+  protected wrappedFunc: SomeFunction;
+  private _negated: boolean = false;
+  private _orElse?: () => void;
+
+  constructor(wrappedFunc: SomeFunction) {
+    this.wrappedFunc = wrappedFunc;
+  }
+
+  public equal(value: any, onPass?: () => void, onErr?: () => void): any {
+
+    if (
+     Tests.assertEquals(this.wrappedFunc.func.call(this) as any, value) && !this._negated 
+) {
+      onPass?.call(this)
+      return true;
+    }else onErr?.call(this); return false;
+    
+    
+
+
+  }
+
+  get not() : ExpectTo {
+    this._negated = true;
+    console.log(this);
+    return this;
+  }
 
 
 }
-// ensureThat(the_function(func)).evaluatesTo(5)
-export function ensureThat(the_function: SomeFunction) {
+class EqualityAssertion {
 
-    return new FunctionChecker(the_function);
+
+}
+
+// ensureThat(the_function(func)).evaluatesTo(5)
+export function expect(the_function: SomeFunction) {
+
+    return new Expectation(the_function);
 
 }
 export function the_function(func: (...args: any) => any) : SomeFunction {
@@ -75,4 +109,11 @@ export class Tests {
 
 }
 
+export class doTests {
 
+
+
+  constructor() {
+    expect(the_function(() => 21)).to.equal(21, () => console.log("no shot"), () => console.log("you fail."))
+  }
+}
